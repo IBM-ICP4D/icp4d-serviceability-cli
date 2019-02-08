@@ -1,0 +1,18 @@
+#!/bin/bash
+
+## Setup ##
+setup(){
+  export HOME_DIR=`pwd`
+  export UTIL_DIR=`pwd`"/util"
+  export LOG_COLLECT_DIR=`pwd`"/log_collector"
+
+  . $UTIL_DIR/util.sh
+  . $LOG_COLLECT_DIR/icpd-logcollector-master-nodes.sh
+}
+
+setup $@
+
+local tempdir=$logs_dir
+dsx_pod=`kubectl get pods --all-namespaces|grep -i dsx-core|head -1|awk '{print $2}'`
+cmd="kubectl describe pod -n zen $dsx_pod"
+get_log_by_cmd $tempdir dsx_version "$cmd"

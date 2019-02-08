@@ -1,0 +1,17 @@
+#!/bin/bash
+
+## Setup ##
+setup(){
+  export HOME_DIR=`pwd`
+  export UTIL_DIR=`pwd`"/util"
+  export LOG_COLLECT_DIR=`pwd`"/log_collector"
+
+  . $UTIL_DIR/util.sh
+  . $LOG_COLLECT_DIR/icpd-logcollector-master-nodes.sh
+}
+
+setup $@
+
+local tempdir=$logs_dir
+cmd="kubectl exec -it -n zen $DB2POD -- su - db2inst1 -c 'db2_ps'"
+get_log_by_cmd $tempdir active_process "$cmd"

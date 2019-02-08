@@ -1,0 +1,18 @@
+#!/bin/bash
+
+## Setup ##
+setup(){
+  export HOME_DIR=`pwd`
+  export UTIL_DIR=`pwd`"/util"
+  export LOG_COLLECT_DIR=`pwd`"/log_collector"
+
+  . $UTIL_DIR/util.sh
+  . $LOG_COLLECT_DIR/icpd-logcollector-master-nodes.sh
+}
+
+setup $@
+
+local tempdir=$logs_dir
+local log_file=$tempdir/messages
+find /var/log -name messages* -mtime -7 -exec cp {} $tempdir/ \;
+check_log_file_exist $log_file messages
