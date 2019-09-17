@@ -824,8 +824,8 @@ if [[ "$osName" == "rhel" || "$osName" == "centos" ]]; then
     if [[ "$osName" == "centos" ]]; then
         osVer=$(awk '{print $4}' /etc/centos-release | cut -d\. -f1,2)
     fi
-    if [[ "$osVer" != "7.3" && "$osVer" != "7.4" && "$osVer" != "7.5" ]]; then
-        log "ERROR: The OS version must be 7.3, 7.4, or 7.5." result
+    if [[ "$osVer" != "7.5" && "$osVer" != "7.6" && "$osVer" != "7.7"  ]]; then
+        log "ERROR: The OS version must be 7.5, 7.6, 7.7." result
         output+="$result"
         ERROR=1
         LOCALTEST=1
