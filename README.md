@@ -26,7 +26,7 @@ Usage:
 
   EXAMPLES:
       ./icp4d_tools.sh --preinstall --type=worker --install_dir=/ibm --data_dir=/data
-      ./icp4d_tools.sh --preinstall_2.5 --type=master
+      ./icp4d_tools.sh --preinstall25 --type=master
       ./icp4d_tools.sh --health
       ./icp4d_tools.sh --health=local
       ./icp4d_tools.sh --collect=smart
