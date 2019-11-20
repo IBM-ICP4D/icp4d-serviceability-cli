@@ -13,7 +13,7 @@ Print_Usage() {
   echo "          --install_dir=<install directory>"
   echo "          --data_dir=<data directory> mandatory for worker node"
   echo "       --preinstall25: Run pre-installation requirements checks (CPU, RAM, and Disk space, etc.) for CPD 2.5. Prior version should run --preinstall"
-  echo "          --type=master|worker: If the current node will be master or worker. For add-ons, choose worker"
+  echo "          --type=master|worker: If the current node will be master or worker." 
   echo "       --health: Run post-installation cluster health checker"
   echo "       --health=local: Run post-installation health check locally on individual node"
   echo "       --collect=smart|standard: Run log collection tool to collect diagnostics and logs files from every pod/container. Default is smart"
