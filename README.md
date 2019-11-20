@@ -12,6 +12,8 @@ Usage:
           --type=master|worker: If the current node will be master or worker. For add-ons, choose worker
           --install_dir=<install directory>
           --data_dir=<data directory> mandatory for worker node
+       --preinstall25: Run pre-installation requirements checks (CPU, RAM, and Disk space, etc.) for Cloud Pak Data 2.5. Any version prior should use --preinstall
+          --type=master|worker: If the current node will be master or worker. For add-ons, choose worker
        --health: Run post-installation cluster health checker
        --health=local: Run post-installation health check locally on individual node
        --collect=smart|standard: Run log collection tool to collect diagnostics and logs files from every pod/container. Default is smart
@@ -24,6 +26,7 @@ Usage:
 
   EXAMPLES:
       ./icp4d_tools.sh --preinstall --type=worker --install_dir=/ibm --data_dir=/data
+      ./icp4d_tools.sh --preinstall_2.5 --type=master
       ./icp4d_tools.sh --health
       ./icp4d_tools.sh --health=local
       ./icp4d_tools.sh --collect=smart

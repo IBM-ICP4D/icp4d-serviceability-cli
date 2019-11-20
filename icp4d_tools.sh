@@ -12,6 +12,8 @@ Print_Usage() {
   echo "          --type=master|worker: If the current node will be master or worker. For add-ons, choose worker"
   echo "          --install_dir=<install directory>"
   echo "          --data_dir=<data directory> mandatory for worker node"
+  echo "       --preinstall25: Run pre-installation requirements checks (CPU, RAM, and Disk space, etc.) for CPD 2.5. Prior version should run --preinstall"
+  echo "          --type=master|worker: If the current node will be master or worker. For add-ons, choose worker"
   echo "       --health: Run post-installation cluster health checker"
   echo "       --health=local: Run post-installation health check locally on individual node"
   echo "       --collect=smart|standard: Run log collection tool to collect diagnostics and logs files from every pod/container. Default is smart"
@@ -64,6 +66,10 @@ Selected_Option() {
   if [ ! -z ${_ICP_PREINSTALL} ]; then
     Prereq_CHK;
   fi
+
+  if [ ! -z ${_ICP_PREINSTALL25} ]; then
+    Prereq_CHK25;
+  fi
 }
 
 
@@ -91,6 +97,13 @@ setupCollectionDirectory()
     LOGS_DIR=`mktemp -d`
 	    
   fi
+}
+
+
+Prereq_CHK25() {
+
+   cd $HOME_DIR
+   ./pre_install/pre_install_check_oc1.sh --type=${_ICP_TYPE}  | tee preinstall_check.log || echo "PreInstall Check not available"
 }
 
 
