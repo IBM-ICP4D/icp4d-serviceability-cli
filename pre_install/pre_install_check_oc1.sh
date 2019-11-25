@@ -512,7 +512,7 @@ LOCALTEST=0
 become_cmd "systemctl status firewalld > /dev/null 2>&1"
 
 if [ $? -ne 0 ]; then         
-    log "ERROR: firewalld is disabled, run systemctl enable firewalld;systectl start firwalld" result
+    log "ERROR: firewalld is disabled, run systemctl enable firewalld;systemctl start firewalld" result
     output+="$result"
     LOCALTEST=1
     WARNING=1
@@ -638,10 +638,10 @@ test_ibmregistryaccess()
 logHeader "Checking connectivity to IBM Artifactory server" $1
 LOCALTEST=0
 
-become_cmd "ping -c 1 hyc-cp4d-team-bootstrap-docker-local.artifactory.swg-devops.com" &> /dev/null
+become_cmd "ping -c 1 cp.icr.io" &> /dev/null
 
 if [[ $? -ne 0 ]] ; then
-    log "WARNING: hyc-cp4d-team-bootstrap-docker-local.artifactory.swg-devops.com is not reachable. Please make sure the the server is reachable. Enabling proxy might fix this otherwise an offline installation needs to be performed" result
+    log "WARNING: cp.icr.io is not reachable. Please make sure the the server is reachable. Enabling proxy might fix this otherwise an offline installation needs to be performed" result
     output+="$result"
     LOCALTEST=1
     WARNING=1
